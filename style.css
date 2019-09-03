@@ -205,3 +205,8 @@ img {
 .media_trigger {
 	text-decoration: underline;
 }
+
+.quote {
+	font-style: italic;
+	line-height: 1.5;
+}
