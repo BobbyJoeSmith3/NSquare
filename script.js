@@ -26,28 +26,8 @@ let mainArticles = document.querySelectorAll(".content article");
 let lastId;
 let cur = [];
 
+// Check which part of document we are on when page loads
 checkCurrent($(".content"));
-/*$(".content").scroll(function() {
-    let fromTop = $(this).scrollTop();
-    console.log("content pane has scrolled: " + fromTop);
-    navLinks.forEach(link => {
-        let article = document.querySelector(link.hash);
-        let adjustedOffsetTop = article.offsetTop - Math.round($(".title").outerHeight(true));
-
-        // if (article.offsetTop <= fromTop &&
-        //     article.offsetTop + article.offsetHeight > fromTop) {
-        //         link.classList.add("current");
-        //     } else {
-        //         link.classList.remove("current");
-        //     }
-        if (adjustedOffsetTop <= fromTop &&
-            adjustedOffsetTop + $(article).outerHeight(true) > fromTop) {
-                link.classList.add("current");
-            } else {
-                link.classList.remove("current");
-            }
-    });
-});*/
 
 $(".content").scroll(function() {
     checkCurrent($(this));
@@ -59,15 +39,8 @@ function checkCurrent(elem) {
     navLinks.forEach(link => {
         let article = document.querySelector(link.hash);
         let adjustedOffsetTop = article.offsetTop - Math.round($(".title").outerHeight(true));
-
-        // if (article.offsetTop <= fromTop &&
-        //     article.offsetTop + article.offsetHeight > fromTop) {
-        //         link.classList.add("current");
-        //     } else {
-        //         link.classList.remove("current");
-        //     }
         if (adjustedOffsetTop <= fromTop &&
-            adjustedOffsetTop + $(article).outerHeight(true) > fromTop) {
+            adjustedOffsetTop + Math.round($(article).outerHeight(true)) > fromTop) {
                 link.classList.add("current");
             } else {
                 link.classList.remove("current");
@@ -80,7 +53,7 @@ function checker (article) {
     let offsetHeight = document.querySelector(article).offsetHeight;
     let elemScrollTop = $(article).scrollTop();
     let outerHeight = $(article).outerHeight();
-    let outerHeightTrue = $(article).outerHeight(true);
+    let outerHeightTrue = Math.round($(article).outerHeight(true));
     let fromT = $(".content").scrollTop();
     let adjustedOffsetTop = offsetTop - Math.round($(".title").outerHeight(true));
     console.log(`offsetTop: ${offsetTop}\nadjustedOffsetTop: ${adjustedOffsetTop}\noffsetHeight: ${offsetHeight}\ne.ScrollTop: ${elemScrollTop}\nouterHeight: ${outerHeight}\nouterHeightTrue: ${outerHeightTrue}\nfromTop: ${fromT}`);
@@ -88,6 +61,6 @@ function checker (article) {
     //     `if (${offsetTop} <= ${fromT} && ${offsetTop} + ${offsetHeight} > ${fromT})...`
     // );
     console.log(
-        `if (${adjustedOffsetTop} <= ${fromT} && ${adjustedOffsetTop} + ${offsetHeight} > ${fromT})...`
+        `if (${adjustedOffsetTop} <= ${fromT} && ${adjustedOffsetTop} + ${outerHeightTrue} > ${fromT})...`
     );
 }
