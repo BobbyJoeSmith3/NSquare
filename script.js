@@ -5,6 +5,7 @@ var media_lib = [
     ['<a href="https://r.hswstatic.com/w_907/gif/podcasts/missedinhistory-podcasts-wp-content-uploads-sites-99-2016-06-Bayard-Rustin-1-P-Full.jpg"  target="_blank"><img src="https://r.hswstatic.com/w_907/gif/podcasts/missedinhistory-podcasts-wp-content-uploads-sites-99-2016-06-Bayard-Rustin-1-P-Full.jpg" class="media_object" alt="Bayard Rustin"></a>', '<a href="https://r.hswstatic.com/w_907/gif/podcasts/missedinhistory-podcasts-wp-content-uploads-sites-99-2016-06-Bayard-Rustin-1-P-Full.jpg" class="note_object" target="_blank">https://r.hswstatic.com/w_907/gif/podcasts/missedinhistory-podcasts-wp-content-uploads-sites-99-2016-06-Bayard-Rustin-1-P-Full.jpg</a>']
 ]
 
+// Display media in media display section when user hovers over associated word
 $(".media_trigger").mouseenter(function() {
 
     var media_index = $(this).attr("data-media-index");
@@ -18,3 +19,75 @@ $(".media_trigger").mouseenter(function() {
     }
     prev_media_index = media_index;
 })
+
+// Navigation scrolling
+let navLinks = document.querySelectorAll("nav a");
+let mainArticles = document.querySelectorAll(".content article");
+let lastId;
+let cur = [];
+
+checkCurrent($(".content"));
+/*$(".content").scroll(function() {
+    let fromTop = $(this).scrollTop();
+    console.log("content pane has scrolled: " + fromTop);
+    navLinks.forEach(link => {
+        let article = document.querySelector(link.hash);
+        let adjustedOffsetTop = article.offsetTop - Math.round($(".title").outerHeight(true));
+
+        // if (article.offsetTop <= fromTop &&
+        //     article.offsetTop + article.offsetHeight > fromTop) {
+        //         link.classList.add("current");
+        //     } else {
+        //         link.classList.remove("current");
+        //     }
+        if (adjustedOffsetTop <= fromTop &&
+            adjustedOffsetTop + $(article).outerHeight(true) > fromTop) {
+                link.classList.add("current");
+            } else {
+                link.classList.remove("current");
+            }
+    });
+});*/
+
+$(".content").scroll(function() {
+    checkCurrent($(this));
+})
+
+function checkCurrent(elem) {
+    let fromTop = $(elem).scrollTop();
+    console.log("content pane has scrolled: " + fromTop);
+    navLinks.forEach(link => {
+        let article = document.querySelector(link.hash);
+        let adjustedOffsetTop = article.offsetTop - Math.round($(".title").outerHeight(true));
+
+        // if (article.offsetTop <= fromTop &&
+        //     article.offsetTop + article.offsetHeight > fromTop) {
+        //         link.classList.add("current");
+        //     } else {
+        //         link.classList.remove("current");
+        //     }
+        if (adjustedOffsetTop <= fromTop &&
+            adjustedOffsetTop + $(article).outerHeight(true) > fromTop) {
+                link.classList.add("current");
+            } else {
+                link.classList.remove("current");
+            }
+    });
+}
+
+function checker (article) {
+    let offsetTop = document.querySelector(article).offsetTop;
+    let offsetHeight = document.querySelector(article).offsetHeight;
+    let elemScrollTop = $(article).scrollTop();
+    let outerHeight = $(article).outerHeight();
+    let outerHeightTrue = $(article).outerHeight(true);
+    let fromT = $(".content").scrollTop();
+    let adjustedOffsetTop = offsetTop - Math.round($(".title").outerHeight(true));
+    console.log(`offsetTop: ${offsetTop}\nadjustedOffsetTop: ${adjustedOffsetTop}\noffsetHeight: ${offsetHeight}\ne.ScrollTop: ${elemScrollTop}\nouterHeight: ${outerHeight}\nouterHeightTrue: ${outerHeightTrue}\nfromTop: ${fromT}`);
+    // console.log(
+    //     `if (${offsetTop} <= ${fromT} && ${offsetTop} + ${offsetHeight} > ${fromT})...`
+    // );
+    console.log(
+        `if (${adjustedOffsetTop} <= ${fromT} && ${adjustedOffsetTop} + ${offsetHeight} > ${fromT})...`
+    );
+}
