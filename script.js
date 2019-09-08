@@ -22,9 +22,8 @@ $(".media_trigger").mouseenter(function() {
 
 // Navigation scrolling
 let navLinks = document.querySelectorAll("nav a");
-let mainArticles = document.querySelectorAll(".content article");
-let lastId;
-let cur = [];
+
+
 
 // Check which part of document we are on when page loads
 checkCurrent($(".content"));

@@ -171,9 +171,12 @@ article {
 	display: grid;
 	grid-template-columns: 16% 84%;
 	grid-column-gap: 1rem;
-	padding: 0 0.8rem 2rem 0.8rem;
+	padding: 4rem 0.8rem 2rem 0.8rem;
 	border-bottom: 2px solid #080808;
-	margin-bottom: 4rem;
+}
+
+.article_0 {
+	padding-top: 0;
 }
 
 .article_title {
