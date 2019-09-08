@@ -160,7 +160,7 @@ li {
 	overflow: scroll;
 }
 
-a, .note_object {
+a, .note_object_style {
 	color: #080808;
 	font-size: 0.8rem;
 	line-height: 1.25;
@@ -201,7 +201,7 @@ article p {
 	grid-column: 2/3;
 }
 
-img {
+.media_object, .media_object_style, img, iframe {
 	width: 100%;
 }
 
