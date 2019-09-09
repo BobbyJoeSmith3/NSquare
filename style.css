@@ -205,6 +205,10 @@ article p {
 	width: 100%;
 }
 
+.website, iframe {
+	height: 90%;
+}
+
 .media_trigger {
 	text-decoration: underline;
 }
