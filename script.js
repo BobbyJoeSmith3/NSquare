@@ -52,7 +52,6 @@ $(".content").scroll(function() {
 
 function checkCurrent(elem) {
     let fromTop = $(elem).scrollTop();
-    // console.log("content pane has scrolled: " + fromTop);
     navLinks.forEach(link => {
         let article = document.querySelector(link.hash);
         let adjustedOffsetTop = article.offsetTop - Math.round($(".title").outerHeight(true));
@@ -73,11 +72,30 @@ function checker (article) {
     let outerHeightTrue = Math.round($(article).outerHeight(true));
     let fromT = $(".content").scrollTop();
     let adjustedOffsetTop = offsetTop - Math.round($(".title").outerHeight(true));
-    console.log(`offsetTop: ${offsetTop}\nadjustedOffsetTop: ${adjustedOffsetTop}\noffsetHeight: ${offsetHeight}\ne.ScrollTop: ${elemScrollTop}\nouterHeight: ${outerHeight}\nouterHeightTrue: ${outerHeightTrue}\nfromTop: ${fromT}`);
+    // console.log(`offsetTop: ${offsetTop}\nadjustedOffsetTop: ${adjustedOffsetTop}\noffsetHeight: ${offsetHeight}\ne.ScrollTop: ${elemScrollTop}\nouterHeight: ${outerHeight}\nouterHeightTrue: ${outerHeightTrue}\nfromTop: ${fromT}`);
     // console.log(
-    //     `if (${offsetTop} <= ${fromT} && ${offsetTop} + ${offsetHeight} > ${fromT})...`
+    //     `if (${adjustedOffsetTop} <= ${fromT} && ${adjustedOffsetTop} + ${outerHeightTrue} > ${fromT})...`
     // );
-    console.log(
-        `if (${adjustedOffsetTop} <= ${fromT} && ${adjustedOffsetTop} + ${outerHeightTrue} > ${fromT})...`
-    );
 }
+
+// Change opening text
+const site_headers = [
+	"Militarization has long been a concern of the black community.",
+	"No one understands militarization in the U.S. better than the black community. From excessive use of force to the threat of nuclear weapons, black voices have a strong legacy of fighting against violence at the hands of the state.",
+	"Russia’s suppression of black voters in 2016 helped elect a leader trying to bring us a new nuclear arms race. Black voices will be key to making sure this arms race never gets launched.",
+	"Civil rights leaders in the 1960s fought racism, poverty, and war together. In 2019, we need to fight the same fight—seeking economic and social justice, but also fighting against a new nuclear arms race."
+]
+
+let current_site_header = 0;
+function cycleSiteHeaders() {
+    current_site_header++;
+    if (current_site_header >= site_headers.length) {
+        current_site_header = 0;
+    }
+	$(".article_0 .article_title").fadeOut(500, function() {
+        $(this).text(site_headers[current_site_header]).fadeIn(500);
+    });
+}
+
+// Cycle the header text on the landing page every ten seconds
+setInterval(function(){cycleSiteHeaders();}, 10000);
