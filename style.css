@@ -192,6 +192,7 @@ article {
 	padding-top: 0;
 	margin-bottom: 0;
 	height: 92vh;
+	text-overflow: ellipsis;
 }
 
 .article_title {
@@ -248,4 +249,10 @@ nav a {
 /* Bring the (transcript) heading in article 6 to the left just for the sake of this layout */
 .article_6 .section_heading {
 	text-align: left;
+}
+
+@media screen and (max-width: 1080px) {
+	.article_title {
+		font-size: 2rem;
+	}
 }
