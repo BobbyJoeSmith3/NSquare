@@ -252,6 +252,10 @@ nav a {
 	text-align: left;
 }
 
+.video {
+	width: 100%;
+}
+
 @media screen and (max-width: 1080px) {
 	.article_title {
 		font-size: 2rem;

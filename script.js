@@ -7,7 +7,7 @@ function mediaConfig(type, url, alt) {
     } else if (type == "online_video") {
         htmlString = `<div class="media_object website"><a href="${url}" target="_blank"><iframe src="${url}" class="media_object_style" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></a></div>`;
     } else if (type == "video") {
-        htmlString = `<video controls>
+        htmlString = `<video class="media_object video" controls>
             <source src="${url}" type="video/mp4">
             Your browser does not support the video tag.
         </video>`;
