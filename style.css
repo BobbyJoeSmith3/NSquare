@@ -228,6 +228,7 @@ article p {
 
 .media_trigger {
 	text-decoration: underline;
+	cursor: pointer;
 }
 
 .quote {
